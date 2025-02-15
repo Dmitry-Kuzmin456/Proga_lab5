@@ -20,7 +20,7 @@ public class CreateCity {
         return city;
     }
 
-    public static City createCityWithDefaultId(String[] data) throws IllegalArgumentException, IllegalDataException {
+    public static City createCityWithDefaultId(String[] data) throws IllegalArgumentException, IllegalDataException, ArrayIndexOutOfBoundsException {
         while (collectionManager.getAllElements().containsKey(collectionManager.getId())) {
             collectionManager.nextId();
         }
