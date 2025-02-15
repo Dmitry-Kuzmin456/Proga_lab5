@@ -6,8 +6,16 @@ import java.util.Scanner;
 
 public class ClientConsole implements Console {
     private final Scanner sc = new Scanner(System.in);
+    private static ClientConsole console;
 
-    public ClientConsole() {
+    private ClientConsole() {
+    }
+
+    public static ClientConsole getConsole(){
+        if (console == null){
+            console = new ClientConsole();
+        }
+        return console;
     }
 
     @Override

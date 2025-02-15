@@ -5,11 +5,7 @@ import client.ClientConsole;
 import java.util.Arrays;
 
 public class AskCity {
-    private static ClientConsole console = new ClientConsole();
-
-    public static void setConsole(ClientConsole console) {
-        AskCity.console = console;
-    }
+    private static ClientConsole console = ClientConsole.getConsole();
 
     public static String[] askCity(long id) throws IllegalArgumentException {
         String[] data = new String[10];

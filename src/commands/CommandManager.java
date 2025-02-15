@@ -29,6 +29,9 @@ public class CommandManager {
         commands.put("exit", new ExitCommand());
         commands.put("replace_if_greater", new ReplaceIfGreaterCommand(collectionManager));
         commands.put("remove_greater_key", new RemoveGreaterKeyCommand(collectionManager));
+        commands.put("remove_all_by_government", new RemoveAllByGovernmentCommand(collectionManager));
+        commands.put("filter_less_than_meters_above_sea_level", new FilterLessThanMetersAboveSeaLevelCommand(collectionManager, console));
+
     }
 
     public void executeCommand(String name, String[] args) throws IllegalArgumentException, IllegalDataException {

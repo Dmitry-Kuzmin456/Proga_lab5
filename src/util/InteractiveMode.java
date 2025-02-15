@@ -19,7 +19,7 @@ public class InteractiveMode {
     private MyFileWriter fileWriter;
 
     public InteractiveMode() {
-        this.console = new ClientConsole();
+        this.console = ClientConsole.getConsole();
         this.collectionManager = new CollectionManager();
         this.history = new History();
         this.commandManager = new CommandManager(console, collectionManager, history);
