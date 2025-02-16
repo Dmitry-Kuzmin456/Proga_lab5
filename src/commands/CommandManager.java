@@ -10,6 +10,7 @@ import collection.CollectionManager;
 import Exceptions.IllegalDataException;
 import util.History;
 import util.MyFileWriter;
+import util.ScriptScanner;
 
 public class CommandManager {
     private final HashMap<String, Command> commands = new HashMap<>();
@@ -23,9 +24,9 @@ public class CommandManager {
         this.collectionManager = collectionManager;
         this.history = new History();
         try{
-            this.fileWriter = new MyFileWriter("src/collection.csv");
+            this.fileWriter = new MyFileWriter(filename);
         } catch (IOException e) {
-            console.println("error: couldn't open collection.csv file");
+            console.println("error: couldn't open collection.csv file for writing");
         }
         commands.put("help", new HelpCommand(this, console));
         commands.put("show", new ShowCommand(collectionManager, console));
@@ -41,7 +42,8 @@ public class CommandManager {
         commands.put("remove_all_by_government", new RemoveAllByGovernmentCommand(collectionManager));
         commands.put("filter_less_than_meters_above_sea_level", new FilterLessThanMetersAboveSeaLevelCommand(collectionManager, console));
         commands.put("print_field_descending_meters_above_sea_level", new PrintFieldDescendingMetersAboveSeaLevelCommand(collectionManager, console));
-
+        commands.put("save", new SaveCommand(collectionManager, console, fileWriter));
+        commands.put("execute_script", new ExecuteScriptCommand(this, collectionManager, history));
     }
 
     public void executeCommand(String name, String[] args) throws IllegalArgumentException, IllegalDataException {
@@ -49,6 +51,13 @@ public class CommandManager {
         if (command == null) {throw new IllegalArgumentException("No such command");}
         command.execute(args);
     }
+
+    public void executeCommandScript(String name, String[] args, ScriptScanner scanner) throws IllegalArgumentException, IllegalDataException {
+        Command command = commands.get(name);
+        if (command == null) {throw new IllegalArgumentException("No such command");}
+        command.execute(args, scanner);
+    }
+
 
     public HashMap<String, Command> getAllCommands() {
         return commands;

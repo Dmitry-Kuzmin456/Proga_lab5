@@ -5,8 +5,10 @@ import Interfaces.Command;
 import client.ClientConsole;
 import collection.CollectionManager;
 import model.City;
+import util.ScriptScanner;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class FilterLessThanMetersAboveSeaLevelCommand implements Command, ArgumentValidator {
     private CollectionManager collectionManager;
@@ -30,10 +32,15 @@ public class FilterLessThanMetersAboveSeaLevelCommand implements Command, Argume
         HashMap<Long, City> collection = collectionManager.getAllElements();
         for (City city : collection.values()) {
             if (city.getMetersAboveSeaLevel() < Float.parseFloat(args[0])) {
-                console.println(city.toString());
+                console.println(city.toString() + "\n");
             }
         }
 
+    }
+
+    @Override
+    public void execute(String[] args, ScriptScanner scanner) throws IllegalArgumentException {
+        execute(args);
     }
 
     @Override

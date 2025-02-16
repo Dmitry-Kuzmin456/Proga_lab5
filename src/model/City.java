@@ -108,16 +108,16 @@ public class City implements Validatable, Comparable<City> {
         return metersAboveSeaLevel;
     }
 
-    public Climate getClimate() {
-        return climate;
+    public String getClimate() {
+        return climate.getDescription();
     }
 
-    public StandardOfLiving getStandardOfLiving() {
-        return standardOfLiving;
+    public String getStandardOfLiving() {
+        return standardOfLiving.getDescription();
     }
 
-    public Government getGovernment() {
-        return government;
+    public String getGovernment() {
+        return government.getDescription();
     }
 
     public Human getGovernor() {

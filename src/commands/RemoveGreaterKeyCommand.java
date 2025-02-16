@@ -4,6 +4,7 @@ import Interfaces.ArgumentValidator;
 import Interfaces.Command;
 import collection.CollectionManager;
 import model.City;
+import util.ScriptScanner;
 
 public class RemoveGreaterKeyCommand implements Command, ArgumentValidator {
     private CollectionManager collectionManager;
@@ -28,6 +29,11 @@ public class RemoveGreaterKeyCommand implements Command, ArgumentValidator {
                 collectionManager.removeElement(id);
             }
         }
+    }
+
+    @Override
+    public void execute(String[] args, ScriptScanner scanner) {
+        execute(args);
     }
 
     @Override

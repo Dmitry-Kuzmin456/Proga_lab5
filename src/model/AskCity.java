@@ -8,7 +8,7 @@ public class AskCity {
     private static ClientConsole console = ClientConsole.getConsole();
 
     public static String[] askCity(long id) throws IllegalArgumentException {
-        String[] data = new String[10];
+        String[] data = new String[11];
         console.print("Name: ");
         data[0] = console.readLine();
         console.print("coordinate x: ");
@@ -29,8 +29,7 @@ public class AskCity {
         data[8] = console.readLine();
         console.print("governors age: ");
         data[9] = console.readWord();
-        String[] newData = Arrays.copyOf(data, data.length + 1);
-        newData[newData.length - 1] = String.valueOf(id);
-        return newData;
+        data[10] = String.valueOf(id);
+        return data;
     }
 }

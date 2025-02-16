@@ -5,6 +5,9 @@ import Interfaces.Command;
 import client.ClientConsole;
 import collection.CollectionManager;
 import Exceptions.IllegalDataException;
+import util.ScriptScanner;
+
+import java.util.Scanner;
 
 public class InfoCommand implements Command, ArgumentValidator {
     private CollectionManager collectionManager;
@@ -21,6 +24,11 @@ public class InfoCommand implements Command, ArgumentValidator {
             throw new IllegalArgumentException("Invalid arguments");
         }
         console.println(collectionManager.getInfo());
+    }
+
+    @Override
+    public void execute(String[] args, ScriptScanner scanner) throws IllegalArgumentException {
+        execute(args);
     }
 
     @Override

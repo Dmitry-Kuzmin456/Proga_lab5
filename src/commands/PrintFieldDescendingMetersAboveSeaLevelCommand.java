@@ -5,6 +5,7 @@ import Interfaces.Command;
 import client.ClientConsole;
 import collection.CollectionManager;
 import model.City;
+import util.ScriptScanner;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -27,8 +28,13 @@ public class PrintFieldDescendingMetersAboveSeaLevelCommand implements Command, 
         ArrayList<City> cities = new ArrayList<>(collectionManager.getAllElements().values());
         cities.sort(Comparator.comparingDouble(City::getMetersAboveSeaLevel).reversed());
         for (City city: cities) {
-            console.println(city.toString());
+            console.println(String.valueOf(city.getName()) + ": " + city.getMetersAboveSeaLevel());
         }
+    }
+
+    @Override
+    public void execute(String[] args, ScriptScanner scanner) {
+        execute(args);
     }
 
     @Override

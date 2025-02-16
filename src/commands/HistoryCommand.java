@@ -4,6 +4,9 @@ import Interfaces.ArgumentValidator;
 import Interfaces.Command;
 import client.ClientConsole;
 import util.History;
+import util.ScriptScanner;
+
+import java.util.Scanner;
 
 public class HistoryCommand implements Command, ArgumentValidator {
     private History history;
@@ -20,6 +23,11 @@ public class HistoryCommand implements Command, ArgumentValidator {
             throw new IllegalArgumentException("Invalid number of arguments");
         }
         console.println(history.getHistory());
+    }
+
+    @Override
+    public void execute(String[] args, ScriptScanner scanner) throws IllegalArgumentException {
+        execute(args);
     }
 
     @Override

@@ -47,4 +47,8 @@ public class ClientConsole implements Console {
     public String readLine(){
         return sc.nextLine();
     }
+
+    public boolean hasNext(){
+        return sc.hasNext();
+    }
 }

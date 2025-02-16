@@ -2,7 +2,11 @@ import util.InteractiveMode;
 
 public class Main {
     public static void main(String[] args) {
-        InteractiveMode session = new InteractiveMode();
+        if (args.length == 0) {
+            System.out.println("you need to write filename");
+            System.exit(0);
+        }
+        InteractiveMode session = new InteractiveMode(args[0]);
         session.run();
     }
 }

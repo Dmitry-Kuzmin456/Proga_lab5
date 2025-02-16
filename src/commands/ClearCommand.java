@@ -6,10 +6,12 @@ import Interfaces.Command;
 import collection.CollectionManager;
 import model.City;
 import model.CreateCity;
+import util.ScriptScanner;
 
 import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class ClearCommand implements Command, ArgumentValidator {
     private CollectionManager collectionManager;
@@ -19,12 +21,17 @@ public class ClearCommand implements Command, ArgumentValidator {
     }
 
     @Override
-    public void execute(String[] args)  throws IllegalArgumentException {
+    public void execute(String[] args) throws IllegalArgumentException {
         if (!argumentsValidation(args)) {
             throw new IllegalArgumentException("Invalid arguments");
         }
         HashMap<Long, City> collection = collectionManager.getAllElements();
         collection.clear();
+    }
+
+    @Override
+    public void execute(String[] args, ScriptScanner scanner) throws IllegalArgumentException{
+        execute(args);
     }
 
     @Override

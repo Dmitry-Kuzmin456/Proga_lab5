@@ -17,15 +17,15 @@ public class InteractiveMode {
     private final History history;
     private MyFileReader fileReader;
 
-    public InteractiveMode() {
+    public InteractiveMode(String fileName) {
         this.console = ClientConsole.getConsole();
         this.collectionManager = new CollectionManager();
         this.history = new History();
-        this.commandManager = new CommandManager(console, collectionManager, history, "src/collection.csv");
+        this.commandManager = new CommandManager(console, collectionManager, history, fileName);
         try{
-            this.fileReader = new MyFileReader("src/collection.csv");
+            this.fileReader = new MyFileReader(fileName);
         } catch (IOException e) {
-            console.println("error: couldn't open collection.csv file");
+            console.println("error: couldn't open file " + fileName);
         }
     }
 
@@ -36,7 +36,7 @@ public class InteractiveMode {
             String[] line;
             int lineNumber = 0;
             while ((line = fileReader.readLine()) != null){
-                if (line.length == 0){
+                if (line.length < 5){
                     continue;
                 }
                 lineNumber++;
@@ -48,7 +48,7 @@ public class InteractiveMode {
                 } catch (IllegalDataException e) {
                     console.println("data line " + lineNumber + " contains data which not match with range of acceptable values");
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    console.println("incorrect number og arguments in line " + lineNumber);
+                    console.println("incorrect number of arguments in line " + lineNumber);
                 }
             }
         } catch (IOException e){
@@ -59,7 +59,9 @@ public class InteractiveMode {
             String[] command = console.readAsArr();
             try{
                 commandManager.executeCommand(command[0], Arrays.copyOfRange(command, 1, command.length));
-                history.addElement(command[0]);
+                if (!command[0].equals("execute_script")){
+                    history.addElement(command[0]);
+                }
             } catch (IllegalArgumentException | IllegalDataException e){
                 console.println(e.getMessage());
             }

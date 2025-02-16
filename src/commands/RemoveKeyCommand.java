@@ -3,6 +3,7 @@ package commands;
 import Interfaces.ArgumentValidator;
 import Interfaces.Command;
 import collection.CollectionManager;
+import util.ScriptScanner;
 
 public class RemoveKeyCommand implements Command, ArgumentValidator{
     private CollectionManager collectionManager;
@@ -25,6 +26,11 @@ public class RemoveKeyCommand implements Command, ArgumentValidator{
             throw new IllegalArgumentException("this id not in collection");
         }
         collectionManager.removeElement(Long.parseLong(args[0]));
+    }
+
+    @Override
+    public void execute(String[] args, ScriptScanner scanner) {
+        execute(args);
     }
 
     @Override

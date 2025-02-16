@@ -3,8 +3,10 @@ package model;
 import client.ClientConsole;
 import collection.CollectionManager;
 import Exceptions.IllegalDataException;
+import util.ScriptScanner;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class CreateCity {
     private static CollectionManager collectionManager;
@@ -30,7 +32,6 @@ public class CreateCity {
     }
 
     public static City createCityWithGivenId(long id) throws IllegalArgumentException, IllegalDataException {
-
         if (id <= 0) {throw new IllegalDataException("Id cannot be negative");}
         String[] data = AskCity.askCity(id);
         try{
@@ -38,8 +39,30 @@ public class CreateCity {
         } catch (IllegalDataException | IllegalArgumentException e) {
             throw new IllegalDataException("You write incorrect data");
         }
-
     }
+
+    public static City createCityWithGivenIdScript(long id, ScriptScanner scanner) throws IllegalArgumentException, IllegalDataException {
+        if (id <= 0) {throw new IllegalDataException("Id cannot be negative");}
+        String[] data = new String[11];
+        data[0] = scanner.readLine();
+        data[1] = scanner.readWord();
+        data[2] = scanner.readWord();
+        data[3] = scanner.readWord();
+        data[4] = scanner.readWord();
+        data[5] = scanner.readWord();
+        data[6] = scanner.readLine();
+        data[7] = scanner.readLine();
+        data[8] = scanner.readLine();
+        data[9] = scanner.readWord();
+        data[10] = String.valueOf(id);
+        try{
+            return CreateCity.createCity(data);
+        } catch (IllegalDataException | IllegalArgumentException e) {
+            throw new IllegalDataException("You write incorrect data");
+        }
+    }
+
+
 
     public static void setCollectionManager(CollectionManager manager) {
         collectionManager = manager;

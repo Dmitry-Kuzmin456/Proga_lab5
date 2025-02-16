@@ -2,6 +2,9 @@ package commands;
 
 import Interfaces.ArgumentValidator;
 import Interfaces.Command;
+import util.ScriptScanner;
+
+import java.util.Scanner;
 
 public class ExitCommand implements Command, ArgumentValidator{
     @Override
@@ -10,6 +13,11 @@ public class ExitCommand implements Command, ArgumentValidator{
             throw new IllegalArgumentException("Invalid arguments");
         }
         System.exit(0);
+    }
+
+    @Override
+    public void execute(String[] args, ScriptScanner scanner){
+        execute(args);
     }
 
     @Override

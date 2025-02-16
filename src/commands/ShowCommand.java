@@ -5,6 +5,7 @@ import Interfaces.Command;
 import client.ClientConsole;
 import collection.CollectionManager;
 import model.City;
+import util.ScriptScanner;
 
 import java.util.HashMap;
 
@@ -26,6 +27,11 @@ public class ShowCommand implements Command, ArgumentValidator {
         for (City city : collection.values()) {
             console.println(city.toString() + "\n");
         }
+    }
+
+    @Override
+    public void execute(String[] args, ScriptScanner scanner) {
+        execute(args);
     }
 
     @Override

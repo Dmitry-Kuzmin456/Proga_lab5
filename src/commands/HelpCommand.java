@@ -3,8 +3,10 @@ package commands;
 import Interfaces.ArgumentValidator;
 import Interfaces.Command;
 import client.ClientConsole;
+import util.ScriptScanner;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class HelpCommand implements Command, ArgumentValidator {
     private CommandManager commandManager;
@@ -24,6 +26,11 @@ public class HelpCommand implements Command, ArgumentValidator {
         for (String command: commands.keySet()){
             console.println(command + ": " + commands.get(command).description());
         }
+    }
+
+    @Override
+    public void execute(String[] args, ScriptScanner scanner) throws IllegalArgumentException {
+        execute(args);
     }
 
     @Override
