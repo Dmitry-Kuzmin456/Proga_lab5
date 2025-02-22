@@ -2,11 +2,16 @@ package util;
 
 import java.util.Scanner;
 
+/**
+ * Класс, который считывает информацию из файла скрипта
+ */
 public class ScriptScanner {
     private Scanner sc;
+    private String fileName;
 
-    public ScriptScanner(Scanner sc) {
+    public ScriptScanner(Scanner sc, String filename) {
         this.sc = sc;
+        this.fileName = filename;
     }
 
     public String[] readAsArr(){
@@ -28,6 +33,10 @@ public class ScriptScanner {
 
     public boolean hasNext(){
         return sc.hasNext();
+    }
+
+    public String getFileName(){
+        return fileName;
     }
 
 }

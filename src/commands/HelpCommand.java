@@ -8,6 +8,9 @@ import util.ScriptScanner;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Команда, выводящая список доступных команд
+ */
 public class HelpCommand implements Command, ArgumentValidator {
     private CommandManager commandManager;
     private ClientConsole console;

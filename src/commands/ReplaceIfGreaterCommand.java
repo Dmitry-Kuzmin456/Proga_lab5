@@ -8,6 +8,9 @@ import model.City;
 import model.CreateCity;
 import util.ScriptScanner;
 
+/**
+ * Команда, заменяющая элемент, в случае, если он больше исходного
+ */
 public class ReplaceIfGreaterCommand implements Command, ArgumentValidator{
     private CollectionManager collectionManager;
 

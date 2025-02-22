@@ -13,6 +13,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Команда, очищающая коллекцию элементов
+ */
 public class ClearCommand implements Command, ArgumentValidator {
     private CollectionManager collectionManager;
 

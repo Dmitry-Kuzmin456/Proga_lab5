@@ -39,7 +39,8 @@ public class PrintFieldDescendingMetersAboveSeaLevelCommand implements Command, 
 
     @Override
     public String description() {
-        return "display elements whose field value is metersAboveSeaLevel, which is less than the specified one";
+        return "\n" +
+                "display the values of the metersAboveSeaLevel field of all elements in descending order";
     }
 
     @Override

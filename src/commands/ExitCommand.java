@@ -6,6 +6,9 @@ import util.ScriptScanner;
 
 import java.util.Scanner;
 
+/**
+ * Команда, завершающая выполнение программы
+ */
 public class ExitCommand implements Command, ArgumentValidator{
     @Override
     public void execute(String[] args) {

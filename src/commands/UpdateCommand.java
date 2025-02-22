@@ -8,6 +8,9 @@ import model.City;
 import model.CreateCity;
 import util.ScriptScanner;
 
+/**
+ * Команда, обновляющая элемент коллекции по ключу
+ */
 public class UpdateCommand implements Command, ArgumentValidator {
     private CollectionManager collectionManager;
 

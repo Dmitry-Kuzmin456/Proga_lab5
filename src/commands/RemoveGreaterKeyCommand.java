@@ -6,6 +6,12 @@ import collection.CollectionManager;
 import model.City;
 import util.ScriptScanner;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Команда, удаляющая все элементы с id больше заданного
+ */
 public class RemoveGreaterKeyCommand implements Command, ArgumentValidator {
     private CollectionManager collectionManager;
 
@@ -24,9 +30,10 @@ public class RemoveGreaterKeyCommand implements Command, ArgumentValidator {
             throw new IllegalArgumentException("This id is not digit");
         }
         long currentId = Long.parseLong(args[0]);
-        for (long id: collectionManager.getAllElements().keySet()){
-            if (id > currentId){
-                collectionManager.removeElement(id);
+        List<Long> keys = new ArrayList<>(collectionManager.getAllElements().keySet());
+        for (long id : keys) {
+            if (id > currentId) {
+                collectionManager.removeElement(id);  // ✅ Теперь безопасно
             }
         }
     }

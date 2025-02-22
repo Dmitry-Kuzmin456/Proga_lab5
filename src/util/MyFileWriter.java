@@ -4,6 +4,9 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Класс, реализующий запись данных в csv файл
+ */
 public class MyFileWriter {
     private FileOutputStream fos;
     private String filename;

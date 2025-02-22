@@ -5,6 +5,9 @@ import Interfaces.Command;
 import collection.CollectionManager;
 import util.ScriptScanner;
 
+/**
+ * Команда, удаляющая элемент по ключу
+ */
 public class RemoveKeyCommand implements Command, ArgumentValidator{
     private CollectionManager collectionManager;
 

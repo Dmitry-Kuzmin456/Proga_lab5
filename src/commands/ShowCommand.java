@@ -7,8 +7,13 @@ import collection.CollectionManager;
 import model.City;
 import util.ScriptScanner;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * Команда, выводящая все элементы в коллекции
+ */
 public class ShowCommand implements Command, ArgumentValidator {
     private CollectionManager collectionManager;
     private ClientConsole console;
@@ -24,8 +29,10 @@ public class ShowCommand implements Command, ArgumentValidator {
             throw new IllegalArgumentException("Invalid arguments");
         }
         HashMap<Long, City> collection = collectionManager.getAllElements();
-        for (City city : collection.values()) {
-            console.println(city.toString() + "\n");
+        ArrayList<Long> keys = new ArrayList<>(collection.keySet());
+        Arrays.sort(keys.toArray());
+        for (Long id : keys) {
+            console.println(collection.get(id).toString() + "\n");
         }
     }
 

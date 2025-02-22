@@ -1,6 +1,7 @@
 package util;
 
 import Exceptions.IllegalDataException;
+import Exceptions.RecursionLimitException;
 import client.ClientConsole;
 import collection.CollectionManager;
 import model.CreateCity;
@@ -9,13 +10,18 @@ import model.City;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
+/**
+ * Класс, который принимает команду от пользователя и вызывает ее
+ */
 public class InteractiveMode {
     private final ClientConsole console;
     private final CollectionManager collectionManager;
     private final CommandManager commandManager;
     private final History history;
     private MyFileReader fileReader;
+
 
     public InteractiveMode(String fileName) {
         this.console = ClientConsole.getConsole();
@@ -29,6 +35,9 @@ public class InteractiveMode {
         }
     }
 
+    /**
+     * Считывание объектов из файла и запуск интерактивного режима
+     */
     public void run(){
         CreateCity.setCollectionManager(collectionManager);
         CreateCity.setConsole(console);
@@ -54,18 +63,25 @@ public class InteractiveMode {
         } catch (IOException e){
             console.println("failed to read file");
         }
-        while (true){
-            console.print("your command: ");
-            String[] command = console.readAsArr();
-            try{
-                commandManager.executeCommand(command[0], Arrays.copyOfRange(command, 1, command.length));
-                if (!command[0].equals("execute_script")){
-                    history.addElement(command[0]);
+        try{
+            while (true){
+                console.print("your command: ");
+                String[] command = console.readAsArr();
+                try{
+                    commandManager.executeCommand(command[0], Arrays.copyOfRange(command, 1, command.length));
+                    if (!command[0].equals("execute_script")){
+                        history.addElement(command[0]);
+                    }
+                } catch (IllegalArgumentException | IllegalDataException | RecursionLimitException e){
+                    console.println(e.getMessage());
                 }
-            } catch (IllegalArgumentException | IllegalDataException e){
-                console.println(e.getMessage());
-            }
+                console.println("");
 
+            }
+        } catch (NoSuchElementException e){
+            console.println("Your stop the program. Good day:)");
         }
+
+
     }
 }

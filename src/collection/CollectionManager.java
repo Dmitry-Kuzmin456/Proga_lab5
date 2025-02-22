@@ -6,6 +6,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.time.ZonedDateTime;
 
+/**
+ * Кдасс, управляющий коллекцией элементов
+ */
 public class CollectionManager {
     private long currentId = 1;
     private final HashMap<Long, City> collection = new HashMap<>();

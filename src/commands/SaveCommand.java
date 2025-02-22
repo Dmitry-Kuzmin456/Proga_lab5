@@ -12,6 +12,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Команда, сохраняющая коллекцию в файл
+ */
 public class SaveCommand implements Command, ArgumentValidator {
     private CollectionManager collectionManager;
     private ClientConsole console;

@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
+import Exceptions.RecursionLimitException;
 import Interfaces.Command;
 import client.ClientConsole;
 import collection.CollectionManager;
@@ -12,6 +13,9 @@ import util.History;
 import util.MyFileWriter;
 import util.ScriptScanner;
 
+/**
+ * Класс, отвечающий за вызов нужной команды при вводе ее названия
+ */
 public class CommandManager {
     private final HashMap<String, Command> commands = new HashMap<>();
     private final ClientConsole console;
@@ -46,19 +50,34 @@ public class CommandManager {
         commands.put("execute_script", new ExecuteScriptCommand(this, collectionManager, history));
     }
 
-    public void executeCommand(String name, String[] args) throws IllegalArgumentException, IllegalDataException {
+    /**
+     * Вызов команды, которую ввел пользователь
+     * @param name имя команды
+     * @param args аргументы, поданные команде на вход
+     */
+    public void executeCommand(String name, String[] args) throws IllegalArgumentException, IllegalDataException, RecursionLimitException {
         Command command = commands.get(name);
         if (command == null) {throw new IllegalArgumentException("No such command");}
         command.execute(args);
     }
 
-    public void executeCommandScript(String name, String[] args, ScriptScanner scanner) throws IllegalArgumentException, IllegalDataException {
+    /**
+     * Вызов команды из скрипта
+     * @param name имя команды
+     * @param args аргументы, поданные команде на вход
+     * @param scanner сканер файла, в котором вызывается команда
+     */
+    public void executeCommandScript(String name, String[] args, ScriptScanner scanner) throws IllegalArgumentException, IllegalDataException, RecursionLimitException {
         Command command = commands.get(name);
         if (command == null) {throw new IllegalArgumentException("No such command");}
         command.execute(args, scanner);
     }
 
 
+    /**
+     *
+     * @return словарь, в котором ключ - это название команды, а значение - это реализующий ее класс
+     */
     public HashMap<String, Command> getAllCommands() {
         return commands;
     }

@@ -8,6 +8,9 @@ import util.ScriptScanner;
 
 import java.util.Scanner;
 
+/**
+ * Команда, выводящая последние 15 исполненных команд
+ */
 public class HistoryCommand implements Command, ArgumentValidator {
     private History history;
     private ClientConsole console;

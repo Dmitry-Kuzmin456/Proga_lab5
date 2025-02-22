@@ -10,6 +10,9 @@ import util.ScriptScanner;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Команда, выводящая объекты значение поля metersAboveSeaLevel которых меньше заданного
+ */
 public class FilterLessThanMetersAboveSeaLevelCommand implements Command, ArgumentValidator {
     private CollectionManager collectionManager;
     private ClientConsole console;

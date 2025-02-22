@@ -11,6 +11,9 @@ import util.ScriptScanner;
 
 import java.util.HashMap;
 
+/**
+ * Команда, удаляющая все элементы, значение поля government которых совпадает с заданным
+ */
 public class RemoveAllByGovernmentCommand implements Command, ArgumentValidator {
     private CollectionManager collectionManager;
 

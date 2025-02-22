@@ -8,10 +8,18 @@ import util.ScriptScanner;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Класс, реализующий создание объекта класса City разными способами
+ */
 public class CreateCity {
     private static CollectionManager collectionManager;
     private static ClientConsole console;
 
+    /**
+     * Создание объекта класса City по массиву строк
+     * @param data данные для создания объекта
+     * @return объект класса City
+     */
     public static City createCity(String[] data) throws IllegalArgumentException{
         Coordinates coordinates = new Coordinates(Double.parseDouble(data[1]), Float.parseFloat(data[2]));
         Human human = new Human(Long.parseLong(data[9]));
@@ -22,6 +30,11 @@ public class CreateCity {
         return city;
     }
 
+    /**
+     * Создает объект с автоматически сгенерированным id
+     * @param data данные для создания объекта
+     * @return объект класса City
+     */
     public static City createCityWithDefaultId(String[] data) throws IllegalArgumentException, IllegalDataException, ArrayIndexOutOfBoundsException {
         while (collectionManager.getAllElements().containsKey(collectionManager.getId())) {
             collectionManager.nextId();
@@ -31,16 +44,28 @@ public class CreateCity {
         return CreateCity.createCity(newData);
     }
 
+
+    /**
+     * Создает объект с заданным id с пользовательским вводом
+     * @param id id объекта
+     * @return объект класса City
+     */
     public static City createCityWithGivenId(long id) throws IllegalArgumentException, IllegalDataException {
         if (id <= 0) {throw new IllegalDataException("Id cannot be negative");}
         String[] data = AskCity.askCity(id);
         try{
             return CreateCity.createCity(data);
         } catch (IllegalDataException | IllegalArgumentException e) {
-            throw new IllegalDataException("You write incorrect data");
+            throw new IllegalDataException("You write incorrect data, cannot create city");
         }
     }
 
+    /**
+     * Создает объект с заданным id из скрипта
+     * @param id id объекта
+     * @param scanner сканер файла со скриптом
+     * @return объект класса City
+     */
     public static City createCityWithGivenIdScript(long id, ScriptScanner scanner) throws IllegalArgumentException, IllegalDataException {
         if (id <= 0) {throw new IllegalDataException("Id cannot be negative");}
         String[] data = new String[11];

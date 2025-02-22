@@ -9,6 +9,9 @@ import util.ScriptScanner;
 
 import java.util.Scanner;
 
+/**
+ * Команда, выводящая информацию о коллекции
+ */
 public class InfoCommand implements Command, ArgumentValidator {
     private CollectionManager collectionManager;
     private ClientConsole console;

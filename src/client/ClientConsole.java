@@ -4,6 +4,9 @@ import Interfaces.Console;
 
 import java.util.Scanner;
 
+/**
+ * Класс, считывающий пользовательский ввод
+ */
 public class ClientConsole implements Console {
     private final Scanner sc = new Scanner(System.in);
     private static ClientConsole console;

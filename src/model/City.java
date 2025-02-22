@@ -17,13 +17,13 @@ public class City implements Validatable, Comparable<City> {
     private StandardOfLiving standardOfLiving; //Поле не может быть null
     private Human governor; //Поле может быть null
 
-    public City(long id, String name, Coordinates coordinates, ZonedDateTime creationTime,
+    public City(long id, String name, Coordinates coordinates,
                 long area, int population, float metersAboveSeaLevel, Climate climate,
                 Government government, StandardOfLiving standardOfLiving, Human governor) {
         this.id = id;
         this.name = name;
         this.coordinates = coordinates;
-        this.creationDate = creationTime;
+        this.creationDate = ZonedDateTime.now();
         this.area = area;
         this.population = population;
         this.metersAboveSeaLevel = metersAboveSeaLevel;
@@ -31,13 +31,6 @@ public class City implements Validatable, Comparable<City> {
         this.government = government;
         this.standardOfLiving = standardOfLiving;
         this.governor = governor;
-    }
-
-    public City(long id, String name, Coordinates coordinates,
-                 long area, int population, float metersAboveSeaLevel, Climate climate,
-                 Government government, StandardOfLiving standardOfLiving, Human governor) {
-        this(id, name, coordinates, ZonedDateTime.now(), area, population, metersAboveSeaLevel,
-                climate, government, standardOfLiving, governor);
     }
 
     public long getId() {
@@ -85,7 +78,7 @@ public class City implements Validatable, Comparable<City> {
 
     @Override
     public int compareTo(City o) {
-        return Long.compare(area, o.area);
+        return Long.compare(id, o.id);
     }
 
     public String getName() {

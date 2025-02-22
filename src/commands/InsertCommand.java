@@ -11,6 +11,9 @@ import util.ScriptScanner;
 
 import java.util.Scanner;
 
+/**
+ * Команда, добавляющая элемент в коллекцию по ключу
+ */
 public class InsertCommand implements Command, ArgumentValidator {
     private CollectionManager collectionManager;
 
