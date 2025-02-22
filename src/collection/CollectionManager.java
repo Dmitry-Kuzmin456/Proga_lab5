@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.time.ZonedDateTime;
 
 /**
- * Кдасс, управляющий коллекцией элементов
+ * Класс, управляющий коллекцией элементов
  */
 public class CollectionManager {
     private long currentId = 1;

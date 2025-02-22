@@ -9,6 +9,7 @@ import util.ScriptScanner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -30,7 +31,7 @@ public class ShowCommand implements Command, ArgumentValidator {
         }
         HashMap<Long, City> collection = collectionManager.getAllElements();
         ArrayList<Long> keys = new ArrayList<>(collection.keySet());
-        Arrays.sort(keys.toArray());
+        Collections.sort(keys);
         for (Long id : keys) {
             console.println(collection.get(id).toString() + "\n");
         }
