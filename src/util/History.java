@@ -30,8 +30,10 @@ public class History {
     public String getHistory(){
         StringBuilder res = new StringBuilder();
         res.append("last commands: ");
+        int i = 1;
         for (String s : history){
-            res.append(s + " ");
+            res.append(i).append(".").append(s).append(" ");
+            i++;
         }
         return res.toString();
     }

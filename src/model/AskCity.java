@@ -2,8 +2,6 @@ package model;
 
 import client.ClientConsole;
 
-import java.util.Arrays;
-
 /**
  * Класс, запрашивающий у пользователя ввод объекта класса City
  */

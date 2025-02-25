@@ -78,7 +78,7 @@ public class City implements Validatable, Comparable<City> {
 
     @Override
     public int compareTo(City o) {
-        return Long.compare(id, o.id);
+        return Float.compare(metersAboveSeaLevel, o.metersAboveSeaLevel);
     }
 
     public String getName() {
